@@ -1,0 +1,355 @@
+{
+  "version": 1,
+  "updated": "2026-10-30",
+  "description": "记账桥云端规则源：微信支付/红包规则（小米规则在 APK 内置层）",
+  "rules": {
+    "com.tencent.mm/*": [
+      {
+        "ruleId": 9000001,
+        "rulePkgId": 9000,
+        "ruleType": "after_pay",
+        "matchMode": 0,
+        "locateAttribute": 0,
+        "locateMaxTraverseCount": 50,
+        "locateToken": "等待对方领取",
+        "extractPattern": "红包金额([\\d,]+(?:\\.\\d{1,2})?)元",
+        "extractFields": {
+          "amount": 1
+        },
+        "extractFieldsMapper": {},
+        "includeNotImportantViews": false
+      },
+      {
+        "ruleId": 9000002,
+        "rulePkgId": 9000,
+        "ruleType": "wechat",
+        "matchMode": 0,
+        "locateAttribute": 0,
+        "locateMaxTraverseCount": 50,
+        "locateToken": "已存入零钱",
+        "extractPattern": "([\\d,]+(?:\\.\\d{1,2})?)元",
+        "extractFields": {
+          "amount": 1
+        },
+        "extractFieldsMapper": {
+          "detailType": {
+            "defaultValue": "1"
+          }
+        },
+        "includeNotImportantViews": false
+      },
+      {
+        "ruleId": 9000003,
+        "rulePkgId": 9000,
+        "ruleType": "wechat",
+        "matchMode": 0,
+        "locateAttribute": 0,
+        "locateMaxTraverseCount": 50,
+        "locateToken": "已收款",
+        "extractPattern": "待(.+?)确认收款[\\s\\S]{0,800}?(?:text=|contentDesc=)[¥￥]\\s*([\\d,]+(?:\\.\\d{1,2})?)",
+        "extractFields": {
+          "counterparty": 1,
+          "amount": 2
+        },
+        "extractFieldsMapper": {
+          "detailType": {
+            "defaultValue": "1"
+          }
+        },
+        "includeNotImportantViews": false
+      },
+      {
+        "ruleId": 9000004,
+        "rulePkgId": 9000,
+        "ruleType": "wechat",
+        "matchMode": 0,
+        "locateAttribute": 0,
+        "locateMaxTraverseCount": 50,
+        "locateToken": "已收款",
+        "extractPattern": "(?:text=|contentDesc=)[¥￥]\\s*([\\d,]+(?:\\.\\d{1,2})?)",
+        "extractFields": {
+          "amount": 1
+        },
+        "extractFieldsMapper": {
+          "detailType": {
+            "defaultValue": "1"
+          }
+        },
+        "includeNotImportantViews": false
+      },
+      {
+        "ruleId": 9000005,
+        "rulePkgId": 9000,
+        "ruleType": "wechat",
+        "matchMode": 0,
+        "locateAttribute": 0,
+        "locateMaxTraverseCount": 50,
+        "locateToken": "已收款",
+        "extractPattern": "(?:text=|contentDesc=)[¥￥][^>]*>[\\s\\S]{0,400}?(?:text=|contentDesc=)([\\d,]+\\.\\d{1,2})",
+        "extractFields": {
+          "amount": 1
+        },
+        "extractFieldsMapper": {
+          "detailType": {
+            "defaultValue": "1"
+          }
+        },
+        "includeNotImportantViews": false
+      },
+      {
+        "ruleId": 9000006,
+        "rulePkgId": 9000,
+        "ruleType": "wechat",
+        "matchMode": 0,
+        "locateAttribute": 0,
+        "locateMaxTraverseCount": 50,
+        "locateToken": "收款成功",
+        "extractPattern": "待(.+?)确认收款[\\s\\S]{0,800}?(?:text=|contentDesc=)[¥￥]\\s*([\\d,]+(?:\\.\\d{1,2})?)",
+        "extractFields": {
+          "counterparty": 1,
+          "amount": 2
+        },
+        "extractFieldsMapper": {
+          "detailType": {
+            "defaultValue": "1"
+          }
+        },
+        "includeNotImportantViews": false
+      },
+      {
+        "ruleId": 9000007,
+        "rulePkgId": 9000,
+        "ruleType": "wechat",
+        "matchMode": 0,
+        "locateAttribute": 0,
+        "locateMaxTraverseCount": 50,
+        "locateToken": "收款成功",
+        "extractPattern": "(?:text=|contentDesc=)[¥￥]\\s*([\\d,]+(?:\\.\\d{1,2})?)",
+        "extractFields": {
+          "amount": 1
+        },
+        "extractFieldsMapper": {
+          "detailType": {
+            "defaultValue": "1"
+          }
+        },
+        "includeNotImportantViews": false
+      },
+      {
+        "ruleId": 9000008,
+        "rulePkgId": 9000,
+        "ruleType": "wechat",
+        "matchMode": 0,
+        "locateAttribute": 0,
+        "locateMaxTraverseCount": 50,
+        "locateToken": "收款成功",
+        "extractPattern": "(?:text=|contentDesc=)[¥￥][^>]*>[\\s\\S]{0,400}?(?:text=|contentDesc=)([\\d,]+\\.\\d{1,2})",
+        "extractFields": {
+          "amount": 1
+        },
+        "extractFieldsMapper": {
+          "detailType": {
+            "defaultValue": "1"
+          }
+        },
+        "includeNotImportantViews": false
+      },
+      {
+        "ruleId": 9000009,
+        "rulePkgId": 9000,
+        "ruleType": "wechat",
+        "matchMode": 0,
+        "locateAttribute": 0,
+        "locateMaxTraverseCount": 50,
+        "locateToken": "已存入零钱",
+        "extractPattern": "待(.+?)确认收款[\\s\\S]{0,800}?(?:text=|contentDesc=)[¥￥]\\s*([\\d,]+(?:\\.\\d{1,2})?)",
+        "extractFields": {
+          "counterparty": 1,
+          "amount": 2
+        },
+        "extractFieldsMapper": {
+          "detailType": {
+            "defaultValue": "1"
+          }
+        },
+        "includeNotImportantViews": false
+      },
+      {
+        "ruleId": 9000010,
+        "rulePkgId": 9000,
+        "ruleType": "wechat",
+        "matchMode": 0,
+        "locateAttribute": 0,
+        "locateMaxTraverseCount": 50,
+        "locateToken": "已存入零钱",
+        "extractPattern": "(?:text=|contentDesc=)[¥￥]\\s*([\\d,]+(?:\\.\\d{1,2})?)",
+        "extractFields": {
+          "amount": 1
+        },
+        "extractFieldsMapper": {
+          "detailType": {
+            "defaultValue": "1"
+          }
+        },
+        "includeNotImportantViews": false
+      },
+      {
+        "ruleId": 9000011,
+        "rulePkgId": 9000,
+        "ruleType": "wechat",
+        "matchMode": 0,
+        "locateAttribute": 0,
+        "locateMaxTraverseCount": 50,
+        "locateToken": "已存入零钱",
+        "extractPattern": "(?:text=|contentDesc=)[¥￥][^>]*>[\\s\\S]{0,400}?(?:text=|contentDesc=)([\\d,]+\\.\\d{1,2})",
+        "extractFields": {
+          "amount": 1
+        },
+        "extractFieldsMapper": {
+          "detailType": {
+            "defaultValue": "1"
+          }
+        },
+        "includeNotImportantViews": false
+      },
+      {
+        "ruleId": 9000012,
+        "rulePkgId": 9000,
+        "ruleType": "wechat",
+        "matchMode": 0,
+        "locateAttribute": 0,
+        "locateMaxTraverseCount": 50,
+        "locateToken": "支付成功",
+        "extractPattern": "待(.+?)确认收款[\\s\\S]{0,800}?(?:text=|contentDesc=)[¥￥]\\s*([\\d,]+(?:\\.\\d{1,2})?)",
+        "extractFields": {
+          "counterparty": 1,
+          "amount": 2
+        },
+        "extractFieldsMapper": {},
+        "includeNotImportantViews": false
+      },
+      {
+        "ruleId": 9000013,
+        "rulePkgId": 9000,
+        "ruleType": "wechat",
+        "matchMode": 0,
+        "locateAttribute": 0,
+        "locateMaxTraverseCount": 50,
+        "locateToken": "支付成功",
+        "extractPattern": "(?:text=|contentDesc=)[¥￥]\\s*([\\d,]+(?:\\.\\d{1,2})?)",
+        "extractFields": {
+          "amount": 1
+        },
+        "extractFieldsMapper": {},
+        "includeNotImportantViews": false
+      },
+      {
+        "ruleId": 9000014,
+        "rulePkgId": 9000,
+        "ruleType": "wechat",
+        "matchMode": 0,
+        "locateAttribute": 0,
+        "locateMaxTraverseCount": 50,
+        "locateToken": "支付成功",
+        "extractPattern": "(?:text=|contentDesc=)[¥￥][^>]*>[\\s\\S]{0,400}?(?:text=|contentDesc=)([\\d,]+\\.\\d{1,2})",
+        "extractFields": {
+          "amount": 1
+        },
+        "extractFieldsMapper": {},
+        "includeNotImportantViews": false
+      },
+      {
+        "ruleId": 9000015,
+        "rulePkgId": 9000,
+        "ruleType": "wechat",
+        "matchMode": 0,
+        "locateAttribute": 0,
+        "locateMaxTraverseCount": 50,
+        "locateToken": "付款成功",
+        "extractPattern": "待(.+?)确认收款[\\s\\S]{0,800}?(?:text=|contentDesc=)[¥￥]\\s*([\\d,]+(?:\\.\\d{1,2})?)",
+        "extractFields": {
+          "counterparty": 1,
+          "amount": 2
+        },
+        "extractFieldsMapper": {},
+        "includeNotImportantViews": false
+      },
+      {
+        "ruleId": 9000016,
+        "rulePkgId": 9000,
+        "ruleType": "wechat",
+        "matchMode": 0,
+        "locateAttribute": 0,
+        "locateMaxTraverseCount": 50,
+        "locateToken": "付款成功",
+        "extractPattern": "(?:text=|contentDesc=)[¥￥]\\s*([\\d,]+(?:\\.\\d{1,2})?)",
+        "extractFields": {
+          "amount": 1
+        },
+        "extractFieldsMapper": {},
+        "includeNotImportantViews": false
+      },
+      {
+        "ruleId": 9000017,
+        "rulePkgId": 9000,
+        "ruleType": "wechat",
+        "matchMode": 0,
+        "locateAttribute": 0,
+        "locateMaxTraverseCount": 50,
+        "locateToken": "付款成功",
+        "extractPattern": "(?:text=|contentDesc=)[¥￥][^>]*>[\\s\\S]{0,400}?(?:text=|contentDesc=)([\\d,]+\\.\\d{1,2})",
+        "extractFields": {
+          "amount": 1
+        },
+        "extractFieldsMapper": {},
+        "includeNotImportantViews": false
+      },
+      {
+        "ruleId": 9000018,
+        "rulePkgId": 9000,
+        "ruleType": "wechat",
+        "matchMode": 0,
+        "locateAttribute": 0,
+        "locateMaxTraverseCount": 50,
+        "locateToken": "转账成功",
+        "extractPattern": "待(.+?)确认收款[\\s\\S]{0,800}?(?:text=|contentDesc=)[¥￥]\\s*([\\d,]+(?:\\.\\d{1,2})?)",
+        "extractFields": {
+          "counterparty": 1,
+          "amount": 2
+        },
+        "extractFieldsMapper": {},
+        "includeNotImportantViews": false
+      },
+      {
+        "ruleId": 9000019,
+        "rulePkgId": 9000,
+        "ruleType": "wechat",
+        "matchMode": 0,
+        "locateAttribute": 0,
+        "locateMaxTraverseCount": 50,
+        "locateToken": "转账成功",
+        "extractPattern": "(?:text=|contentDesc=)[¥￥]\\s*([\\d,]+(?:\\.\\d{1,2})?)",
+        "extractFields": {
+          "amount": 1
+        },
+        "extractFieldsMapper": {},
+        "includeNotImportantViews": false
+      },
+      {
+        "ruleId": 9000020,
+        "rulePkgId": 9000,
+        "ruleType": "wechat",
+        "matchMode": 0,
+        "locateAttribute": 0,
+        "locateMaxTraverseCount": 50,
+        "locateToken": "转账成功",
+        "extractPattern": "(?:text=|contentDesc=)[¥￥][^>]*>[\\s\\S]{0,400}?(?:text=|contentDesc=)([\\d,]+\\.\\d{1,2})",
+        "extractFields": {
+          "amount": 1
+        },
+        "extractFieldsMapper": {},
+        "includeNotImportantViews": false
+      }
+    ]
+  }
+}
